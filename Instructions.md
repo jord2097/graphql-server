@@ -146,7 +146,7 @@ _Relations_:
   ```graphql
   query {
     planets {
-      id
+      id 
       name
       code
       spaceCenters(limit: 3) {
