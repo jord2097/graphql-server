@@ -1,0 +1,23 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.9.0",
+    "apollo-server-core": "^3.9.0",
+    "apollo-server-koa": "^3.9.0",
+    "graphql": "^16.5.0",
+    "http": "^0.0.1-security",
+    "knex": "^2.1.0",
+    "koa": "^2.13.4",
+    "nodemon": "^2.0.18",
+    "pg": "^8.7.3"
+  }
+}
