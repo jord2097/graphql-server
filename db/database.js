@@ -1,4 +1,13 @@
-import pkg from 'pg'
+import pkg from 'knex'
+const { knex } = pkg
+import knexfile from './knexfile.js'
+
+const db = knex(knexfile.development)
+module.exports = db
+
+
+
+/* import pkg from 'pg'
 const {Client} = pkg
 
 const client = new Client ({
@@ -16,3 +25,5 @@ client.query('SELECT NOW()', (err, res) => {
   console.log(err,res)
   client.end()
 })
+ */
+
