@@ -3,7 +3,7 @@
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
-export const development = {
+ const development = {
   client: 'postgresql',
   connection: {
     port: '5433',
@@ -19,3 +19,5 @@ export const development = {
     tableName: 'knex_migrations'
   }
 };
+
+export {development}

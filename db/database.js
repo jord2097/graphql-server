@@ -1,9 +1,9 @@
 import pkg from 'knex'
 const { knex } = pkg
-import knexfile from './knexfile.js'
+import {development} from './knexfile.js'
 
-const db = knex(knexfile.development)
-module.exports = db
+const db = knex(development)
+export default db
 
 
 
@@ -26,4 +26,5 @@ client.query('SELECT NOW()', (err, res) => {
   client.end()
 })
  */
+
 

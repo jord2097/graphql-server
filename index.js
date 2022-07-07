@@ -5,7 +5,7 @@ import {makeExecutableSchema} from '@graphql-tools/schema'
 import Koa from 'koa'
 import http from 'http'
 import typeDefs from './lib/schema.js'
-import resolvers from './lib/resolver.js'
+import resolvers from './lib/resolvers.js'
 import {applyMiddleware} from 'graphql-middleware';
 
 
