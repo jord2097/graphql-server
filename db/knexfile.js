@@ -18,6 +18,7 @@
   migrations: {
     tableName: 'knex_migrations'
   }
+  
 };
 
 export {development}
