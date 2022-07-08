@@ -1,4 +1,4 @@
-import db from './database'
+import db from './database.js'
 
 // functions to be used in resolvers to get specified data from db
 
@@ -7,6 +7,12 @@ class planets {
         return db
         .select()
         .table('planets')
+    }
+    static async getByCode(code) {
+        return db
+        .first()
+        .table('planets')
+        .where('code', code)
     }
 }
 
@@ -21,6 +27,12 @@ class spaceCenters {
         return db
         .select()
         .table('space_centers')
+    }
+    static async getByCode(code) {
+        return db
+        .select()        
+        .table('space_centers')
+        .where('planet_code', code)
     }
 }
 
@@ -60,4 +72,6 @@ export {
     spaceCenters,
     flights,
     bookings
-} 
+}
+
+
