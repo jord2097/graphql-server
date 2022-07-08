@@ -12,11 +12,12 @@ export function up(knex) {
     })
     .createTable('space_centers', table => {
         table.increments('id');
-        table.string('uid').notNullable().unique()
-        table.string('name').notNullable()
-        table.string('description')
-        table.float('latitude').notNullable()
-        table.float('longitude').notNullable()
+        table.string('name', 500).notNullable()
+        table.string('uid', 500).notNullable().unique()        
+        table.string('description', 500)
+        table.float('latitude', 500).notNullable()
+        table.float('longitude', 500).notNullable()
+        table.string('planet_code', 500).notNullable()
         table.timestamps(true, true)  
     })
     .createTable('flights', table => {

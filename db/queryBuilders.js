@@ -1,5 +1,7 @@
 import db from './database'
 
+// functions to be used in resolvers to get specified data from db
+
 class planets {    
     static async getAll() {
         return db
@@ -51,7 +53,6 @@ class bookings {
         .table('bookings')
     }
 }
-
 
 
 export {
