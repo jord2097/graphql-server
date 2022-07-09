@@ -31,13 +31,7 @@ class spaceCenters {
             .where('uid', args.uid)
         }
         
-    }
-    static async getCount() {
-        return db
-        .count("id")
-        .from('space_centers')
-        .first()
-    }    
+    }       
     static async getAllPaginated(page, pageSize) { 
         return db
         .select()
@@ -67,6 +61,16 @@ class flights {
         return db
         .select()
         .table('flights')
+    }
+    
+    static async schedule(flightInfo) {
+        return db('flights')
+        .insert({
+            code: flightInfo.code,
+            departure_at: flightInfo.departure_at,
+            seat_count: flightInfo.seat_count            
+        })
+        
     }
 }
 
