@@ -17,22 +17,41 @@ class planets {
 }
 
 class spaceCenters {
-    static async getById(id) {
-        return db
-        .first()
-        .table('space_centers')
-        .where('id', id)
+    static async getById(args) {
+        if (args.id) {
+            return db
+            .first()
+            .table('space_centers')
+            .where('id', args.id)
+        }
+        else if (args.uid)  {
+            return db
+            .first()
+            .table('space_centers')
+            .where('uid', args.uid)
+        }
+        
     }
-    static async getAll() { 
+    static async getCount() {
+        return db
+        .count("id")
+        .from('space_centers')
+        .first()
+    }    
+    static async getAllPaginated(page, pageSize) { 
         return db
         .select()
+        .offset(page ? page : 0)
+        .limit(pageSize ? pageSize : 5)
         .table('space_centers')
     }
-    static async getByCode(code) {
+    static async getByCode(code, limit) {
         return db
-        .select()        
+        .select()
+        .limit(limit)   
         .table('space_centers')
         .where('planet_code', code)
+        
     }
 }
 
