@@ -27,6 +27,7 @@ export function up(knex) {
         table.integer('seat_count').notNullable()
         table.string('launching_site_id').notNullable()
         table.string('landing_site_id').notNullable()
+        table.integer('available_seats').notNullable()
         table.timestamps(true, true)  
 
     })

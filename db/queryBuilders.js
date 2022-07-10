@@ -17,27 +17,24 @@ class planets {
     }
 }
 
-class spaceCenters {
-    static async getById(args) {
-        if (args.id) {
-            return db
-            .first()
-            .table('space_centers')
-            .where('id', args.id)
-        }
-        else if (args.uid)  {
-            return db
-            .first()
-            .table('space_centers')
-            .where('uid', args.uid)
-        }        
+class spaceCenters {    
+    static async getBy(args) { // parameter is an obj in which we expect an id/uid
+        return db('space_centers')
+        .first()
+        .modify(function(queryBuilder) {
+            if (args.id) {
+                queryBuilder.where('id', args.id)
+            }
+            if (args.uid) {
+                queryBuilder.where('uid', args.uid)
+            }
+        })
     }
     static async getbyUID(uid){
-        return db
-        .first()
-        .table('space_centers')
+        return db('space_centers')
+        .first()        
         .where('uid', uid)
-    }   
+    }      
     static async getAllPaginated(page, pageSize) {
         pageSize > 100 ? pageSize = 100 : pageSize        
         return db
@@ -67,13 +64,26 @@ class flights {
         .first()
         .table('flights')
         .where('id', id)
-    }
-
-    static async getAllPaginated(page, pageSize) {
+    }    
+    static async getAllPaginated(filters, page, pageSize) {
         pageSize > 100 ? pageSize = 100 : pageSize
         return db
-        .select()
+        .select()               
         .offset(page)
+        .modify(function (queryBuilder) {
+            if (filters.from) { // these conditionals may need to be typed
+                queryBuilder.where('launching_site_id', filters.from)                
+            }
+            if (filters.to) {
+                queryBuilder.where('landing_site_id', filters.to)
+            }
+            if (filters.departureDate) {
+                queryBuilder.where('departure_at', filters.departureDate)
+            }
+            if (filters.seatCount) {
+                queryBuilder.where('seat_count', filters.seatCount)
+            }
+        })
         .limit(pageSize)
         .orderBy('id', 'asc')
         .table('flights')
@@ -82,15 +92,13 @@ class flights {
         return db('flights')
         .count("id")
         .first()        
-    }
-    
+    }    
     static async getByCode(code) {
         return db
         .first()
         .table('flights')
         .where('code', code)
     }
-
     static async schedule(flightInfo, code) {           
         return db('flights')
         .insert({
@@ -98,9 +106,16 @@ class flights {
             launching_site_id: flightInfo.launchSiteId,
             landing_site_id: flightInfo.landingSiteId,
             departure_at: flightInfo.departureAt,
-            seat_count: flightInfo.seatCount            
+            seat_count: flightInfo.seatCount,
+            available_seats: flightInfo.seatCount            
         })
         .returning('*')        
+    }
+    static async bookSeats(bookInfo) {
+        let seatsBooked = -bookInfo.seatCount
+        return db('flights')
+        .where('code', bookInfo.flightId)
+        .increment('available_seats', seatsBooked)
     }
 }
 
@@ -112,10 +127,34 @@ class bookings {
         .where('id', id)
     }
 
-    static async getAll() {
-        return db
+    static async getAllPaginated(filters, page, pageSize) {
+        pageSize > 100 ? pageSize = 100 : pageSize        
+        return db('bookings')
         .select()
-        .table('bookings')
+        .offset(page)
+        .limit(pageSize)
+        .modify(function (queryBuilder) {
+            if (filters.email) {
+                queryBuilder.where('email', filters.email)
+            }
+        })
+        .orderBy('id', 'asc') // default sorting is problematic
+        
+    }
+    static async getCount(){
+        return db('bookings')
+        .count("id")
+        .first()        
+    }   
+
+    static async book(bookInfo) {
+        return db('bookings')
+        .insert({
+            flight: bookInfo.flightId,
+            seat_count: bookInfo.seatCount,
+            email: bookInfo.email
+        })
+        .returning('*')
     }
 }
 
