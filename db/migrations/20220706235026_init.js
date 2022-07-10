@@ -22,14 +22,17 @@ export function up(knex) {
     })
     .createTable('flights', table => {
         table.increments('id');
-        table.string('code').notNullable().unique()
-        table.datetime('departure_at').notNullable()
+        table.string('code').notNullable().unique()        
+        table.datetime('departure_at').notNullable()        
         table.integer('seat_count').notNullable()
+        table.string('launching_site_id').notNullable()
+        table.string('landing_site_id').notNullable()
         table.timestamps(true, true)  
 
     })
     .createTable('bookings', table => {
         table.increments('id');
+        table.string('flight').notNullable()
         table.integer('seat_count').notNullable()
         table.string('email').notNullable()
         table.timestamps(true, true)  

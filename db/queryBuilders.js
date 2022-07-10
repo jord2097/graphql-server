@@ -38,11 +38,13 @@ class spaceCenters {
         .table('space_centers')
         .where('uid', uid)
     }   
-    static async getAllPaginated(page, pageSize) { 
+    static async getAllPaginated(page, pageSize) {
+        pageSize > 100 ? pageSize = 100 : pageSize        
         return db
         .select()
         .offset(page)
         .limit(pageSize)
+        .orderBy('id', 'asc') // default sorting is problematic
         .table('space_centers')
     }
     static async getByCode(code, limit=4) {
@@ -50,8 +52,12 @@ class spaceCenters {
         .select()
         .limit(limit>10?10:limit)   
         .table('space_centers')
-        .where('planet_code', code)
-        
+        .where('planet_code', code)        
+    }
+    static async getCount(){
+        return db('space_centers')
+        .count("id")
+        .first()        
     }
 }
 
@@ -63,10 +69,19 @@ class flights {
         .where('id', id)
     }
 
-    static async getAll() {
+    static async getAllPaginated(page, pageSize) {
+        pageSize > 100 ? pageSize = 100 : pageSize
         return db
         .select()
+        .offset(page)
+        .limit(pageSize)
+        .orderBy('id', 'asc')
         .table('flights')
+    }
+    static async getCount(){
+        return db('flights')
+        .count("id")
+        .first()        
     }
     
     static async getByCode(code) {
@@ -75,11 +90,13 @@ class flights {
         .table('flights')
         .where('code', code)
     }
-    
+
     static async schedule(flightInfo, code) {           
         return db('flights')
         .insert({
             code: code,
+            launching_site_id: flightInfo.launchSiteId,
+            landing_site_id: flightInfo.landingSiteId,
             departure_at: flightInfo.departureAt,
             seat_count: flightInfo.seatCount            
         })
