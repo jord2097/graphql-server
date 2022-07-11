@@ -9,45 +9,35 @@ import resolvers from './lib/resolvers.js'
 import {applyMiddleware} from 'graphql-middleware';
 import jwt from 'koa-jwt';
 import {secret} from './lib/config.js'
-import shield from './permissions.js'
-import {ApolloGateway,RemoteGraphQLDataSource} from '@apollo/gateway'
-
-// build a gateway for the remote services
-const gateway = new ApolloGateway({
-    serviceList: [{ name: "accounts", url: "http://localhost:3000" }],
-buildService({ name, url }) { 
-
-    return new RemoteGraphQLDataSource({
-        url,
-        willSendRequest({request,context}) {
-            request.http.headers.set('user',  context.user? JSON.stringify(context.user):null)
-        }
-    })
-} 
-   
-
-
-})
-
+import permissions from './permissions.js'
+import Jwt from 'jsonwebtoken';
 async function startApolloServer(typeDefs, resolvers) {
     const httpServer = http.createServer()
+
     const server = new ApolloServer({
         schema:applyMiddleware(
-            makeExecutableSchema({ typeDefs, resolvers: resolvers }),
-           
+    makeExecutableSchema({ typeDefs, resolvers: resolvers }),
+          
 
-        ),    
-        context: ({req}) => {
+        ),   
+    
+        context: ({ctx}) => {
+       
+          let {request} = ctx;
+           
+          
+             const token = request.headers.authorization || '';
+                const tokenParts = token.split(' ');
+            const user = Jwt.decode(tokenParts[1], secret);
          
-         const user = req.headers.user? JSON.parse(req.headers.user):null
-        
-         return {user};
+
+            return { user };
 
 
         }, 
         tracing: true,
         cache: 'bounded',
-        plugins:[ApolloServerPluginLandingPageGraphQLPlayground()],
+        // plugins:[ApolloServerPluginLandingPageGraphQLPlayground()], // in order to use old GraphQL playground
       playground:true,
     })
 
@@ -59,7 +49,7 @@ async function startApolloServer(typeDefs, resolvers) {
         algorithms: ["HS256"], 
         credentialsRequired: false
   })) *///koa middleware
-  app.use(jwt({ secret,algorithms:["HS256"] }).unless({ path: [/^\/graphql/] }))
+ app.use(jwt({ secret,algorithms:["HS256"] }).unless({ path: [/^\/graphql/] }))
     server.applyMiddleware({ app , path: '/graphql'})
     httpServer.on('request', app.callback())
     await new Promise(resolve => httpServer.listen({ port: 3000 }, resolve));

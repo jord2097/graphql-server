@@ -6,9 +6,10 @@
  const development = {
   client: 'postgresql',
   connection: {
-    port: '5433',
-    database: 'gql-space',
-    user: 'postgres',
+    host: 'localhost', 
+    port: '5433', // either 5432 or 5433 depending on postgres version 9 or latest
+    database: 'gql-space', // create postgres database with this or any name
+    user: 'postgres', // postgres is default
     password: 'password',
   },
   pool: {
@@ -17,7 +18,7 @@
   },
   migrations: {
     tableName: 'knex_migrations'
-  }
+  } 
   
 };
 
