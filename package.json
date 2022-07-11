@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/gateway": "^2.0.5",
     "@graphql-tools/schema": "^8.5.0",
     "apollo-server": "^3.9.0",
     "apollo-server-core": "^3.9.0",
@@ -19,13 +20,22 @@
     "graphql": "^16.5.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-middleware": "^6.1.31",
+    "graphql-shield": "^7.5.0",
     "graphql-tools": "^8.3.0",
     "http": "^0.0.1-security",
     "install": "^0.13.0",
+    "jest": "^28.1.2",
+    "jest-puppeteer": "^6.1.1",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^2.1.0",
     "knex-paginate": "^3.0.1",
     "koa": "^2.13.4",
+    "koa-jwt": "^4.0.3",
     "nodemon": "^2.0.18",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "puppeteer": "^15.3.2"
+  },
+  "devDependencies": {
+    "isomorphic-fetch": "^3.0.0"
   }
 }

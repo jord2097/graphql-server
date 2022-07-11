@@ -44,7 +44,7 @@ class spaceCenters {
         .orderBy('id', 'asc') // default sorting is problematic
         .table('space_centers')
     }
-    static async getByCode(code, limit=4) {
+    static async getByCode(code, limit) {
         return db
         .select()
         .limit(limit>10?10:limit)   
