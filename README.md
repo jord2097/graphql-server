@@ -31,6 +31,6 @@ e.g. ```login(email: "jordan@example.com)```
 - [x] added a simple auth token that secures queries and mutations
 - [x] used jest for testing sample queries and mutations
 - [x] used knex for query building, seeding and migrations
-- [x] created all required types, queries and mutations
+- [x] created all required types, queries and mutations with pagination, arguments
 - [ ] Docker TBA
 
