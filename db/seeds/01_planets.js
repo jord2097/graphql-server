@@ -1,70 +1,70 @@
 /**
  * @param { import("knex").Knex } knex
- * @returns { Promise<void> } 
+ * @returns { Promise<void> }
  */
 export async function seed(knex) {
   // Deletes ALL existing entries
-  await knex('planets').del()
-  await knex('planets').insert([
+  await knex("planets").del();
+  await knex("planets").insert([
     {
-      "name": "Mercury",
-      "code": "MER"
+      name: "Mercury",
+      code: "MER",
     },
     {
-      "name": "Venus",
-      "code": "VEN"
+      name: "Venus",
+      code: "VEN",
     },
     {
-      "name": "Earth",
-      "code": "EAR"
+      name: "Earth",
+      code: "EAR",
     },
     {
-      "name": "Mars",
-      "code": "MAR"
+      name: "Mars",
+      code: "MAR",
     },
     {
-      "name": "Jupiter",
-      "code": "JUP"
+      name: "Jupiter",
+      code: "JUP",
     },
     {
-      "name": "Saturn",
-      "code": "SAT"
+      name: "Saturn",
+      code: "SAT",
     },
     {
-      "name": "Uranus",
-      "code": "URA"
+      name: "Uranus",
+      code: "URA",
     },
     {
-      "name": "Neptune",
-      "code": "NEP"
+      name: "Neptune",
+      code: "NEP",
     },
     {
-      "name": "Ceres",
-      "code": "CER"
+      name: "Ceres",
+      code: "CER",
     },
     {
-      "name": "Pluto",
-      "code": "PLU"
+      name: "Pluto",
+      code: "PLU",
     },
     {
-      "name": "Eris",
-      "code": "ERI"
+      name: "Eris",
+      code: "ERI",
     },
     {
-      "name": "Enceladus",
-      "code": "SAT_ENC"
+      name: "Enceladus",
+      code: "SAT_ENC",
     },
     {
-      "name": "Titan",
-      "code": "SAT_TIT"
+      name: "Titan",
+      code: "SAT_TIT",
     },
     {
-      "name": "Ganymede",
-      "code": "JUP_GAN"
+      name: "Ganymede",
+      code: "JUP_GAN",
     },
     {
-      "name": "Europa",
-      "code": "JUP_EUR"
-    }
+      name: "Europa",
+      code: "JUP_EUR",
+    },
   ]);
 }
