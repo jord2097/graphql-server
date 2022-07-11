@@ -1,7 +1,7 @@
 # Instructions for running the GraphQL server from scratch
 
 ## Prerequisites
-- Node 14 onwards due to ES6 modules
+- Node 14 onwards due to use of ES6 modules
 - Postgresql installed on local machine (instead of Docker due to time constraints)
 
 ## Set up package
@@ -16,8 +16,8 @@
 ```knex seed:run```
 
 ## Start up Server
-- from the project root run npm start or node index.js to start the server
-- access it at localhost:3000/graphql
+- from the project root run ```npm start``` or ```node index.js``` to start the server
+- access it at ```http://localhost:3000/graphql```
 - the queries and mutations are secured by a token, so you must use the "login" mutation first with an email as argument
 e.g. ```login(email: "jordan@example.com)```
 - this will return the token, which is used in the standard format
