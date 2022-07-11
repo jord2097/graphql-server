@@ -1,5 +1,4 @@
 import db from './database.js'
-import crypto from 'crypto'
 
 // functions to be used in resolvers to get specified data from db
 
