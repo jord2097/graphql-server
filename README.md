@@ -26,11 +26,11 @@ e.g. ```login(email: "jordan@example.com)```
 - to run tests use: ```npm test```
 
 ## Features
--[x] Created server with koa
--[x] Used apollo-server to create graphql endpoint at localhost:3000/graphql
--[x] added a simple auth token that secures queries and mutations
--[x] used jest for testing sample queries and mutations
--[x] used knex for query building, seeding and migrations
--[x] created all required types, queries and mutations
--[] Docker TBA
+[x] Created server with koa
+[x] Used apollo-server to create graphql endpoint at localhost:3000/graphql
+[x] added a simple auth token that secures queries and mutations
+[x] used jest for testing sample queries and mutations
+[x] used knex for query building, seeding and migrations
+[x] created all required types, queries and mutations
+[] Docker TBA
 
