@@ -32,5 +32,5 @@ e.g. ```login(email: "jordan@example.com)```
 - [x] used jest for testing sample queries and mutations
 - [x] used knex for query building, seeding and migrations
 - [x] created all required types, queries and mutations
-- [] Docker TBA
+- [ ] Docker TBA
 
