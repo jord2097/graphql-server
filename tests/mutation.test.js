@@ -68,6 +68,8 @@ test("mutation to create flight", async () => {
       scheduleFlight: expect.any(Object),
     })
   );
+  expect(json.data.scheduleFlight.departure_at).toEqual('2007-12-03T10:15:30.000Z') // slightly different format when pushed to postgres
+  expect(json.data.scheduleFlight.seat_count).toEqual(354)
 });
 //  user should be authorized with a token to access the api
 test("mutation to create flight should return error if user is not authorized", async () => {
