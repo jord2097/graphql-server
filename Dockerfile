@@ -1,9 +1,8 @@
 FROM node:16
 
 WORKDIR /app
-
 COPY . .
 
 RUN npm install --legacy-peer-deps
 
-CMD ['npm', "start"]
+CMD ["npm", "start"]

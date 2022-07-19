@@ -7,8 +7,8 @@ const development = {
   client: "postgresql",
   connection: {
     host: "localhost", // always localhost
-    port: "5432", // either 5432 or 5433 depending on postgres version 9 or latest respectively
-    database: "graphql-server", // create postgres database with this or any name
+    port: "5555", // either 5432 or 5433 depending on postgres version 9 or latest respectively
+    database: "postgres", // create postgres database with this or any name
     user: "postgres", // postgres is default
     password: "password",
   },

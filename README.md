@@ -37,4 +37,4 @@
 - [x] used jest for testing sample queries and mutations
 - [x] used knex for query building, seeding and migrations
 - [x] created all required types, queries and mutations with pagination, arguments
-- [ ] Docker TBA
+- [x] Docker works for a container with Node and Postgres service
