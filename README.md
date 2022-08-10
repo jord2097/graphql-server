@@ -1,5 +1,4 @@
-# GraphQL server 
-
+# GraphQL server
 
 ## Prerequisites
 
