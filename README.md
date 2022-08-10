@@ -38,4 +38,4 @@
 - [x] used knex for query building, seeding and migrations
 - [x] created all required types, queries and mutations with pagination, arguments
 - [x] Docker works for a container with Node and Postgres service
-- [] Deploy to Heroku
+- [ ] Deploy to Heroku
