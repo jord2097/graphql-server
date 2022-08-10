@@ -1,4 +1,5 @@
-# Instructions for running the GraphQL server from scratch
+# GraphQL server 
+
 
 ## Prerequisites
 
